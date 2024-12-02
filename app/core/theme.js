@@ -8,5 +8,7 @@ export const theme = {
     primary: "#4C4C9D",
     secondary: "#1F2732",
     error: "#ED1C24",
+    myColor: '#ffff',
+    link : '#449500' ,
   },
 };

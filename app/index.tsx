@@ -3,40 +3,42 @@ import React from "react";
 import Background from "@/app/components/Background";
 import Logo from "@/app/components/Logo";
 import Header from "@/app/components/Header";
-import Button from "@/app/components/Button";
+// import Button from "@/app/components/Button";
 import Paragraph from "@/app/components/Paragraph";
-import { Link, useNavigation } from "expo-router";
-import { StyleSheet, Text } from "react-native";
-import { theme } from "@/app/core/theme";
-
+import { Link } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Button } from '@rneui/themed';
+import { useNavigation } from "@react-navigation/native";
 export default function index() {
-    const navigate = useNavigation()
+  
+  const navigation = useNavigation();
   return (
     <Background>
       <Logo />
-      <Header>Welcome to inDrive</Header>
+      {/* <Text style={styles.text}>Welcome to inDrive</Text> */}
       <Paragraph>
-        A starter app template for React Native Expo, featuring a ready-to-use
-        login screen.
+      Welcome to our app! Let’s begin your journey by verifying your account for a seamless experience.
       </Paragraph>
-      <Button mode="contained" style={undefined}>
-        <Link href="/screens/LoginScreen">Login</Link>
-      </Button>
-      <Button mode="contained" style={undefined}>
-        <Link href="/screens/RegisterScreen">Sign Up</Link>
-      </Button>
+      <Link style={styles.button} href="/screens/LoginScreen">
+      <Text style={styles.text}>Login</Text></Link>
+
+      <Link style={styles.button} href="/screens/RegisterScreen">
+      <Text style={styles.text}>Sign Up</Text></Link>
     </Background>
   );
 }
 const styles = StyleSheet.create({
-    button: {
-      width: "100%",
-      marginVertical: 10,
-      paddingVertical: 2,
-    },
-    text: {
-      fontWeight: "bold",
-      fontSize: 15,
-      lineHeight: 26,
-    },
-  });
+  button: {
+    width: 300,
+    padding: 15,
+    backgroundColor: '#c1f21d',
+    borderRadius: 20,
+    textAlign : 'center',
+    alignItems: 'center',
+    margin: 5
+  },
+  text: {
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+});
