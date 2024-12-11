@@ -5,21 +5,19 @@ import Background from "../components/Background";
 import Logo from "../components/Logo";
 import Header from "../components/Header";
 import TextInput from "../components/TextInput";
-import { theme } from "../core/theme.js";
-import { Auth } from "../../firebaseConfig";
+import { theme } from "../core/theme";
+import { auth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Alert } from "react-native";
 import { Link } from "expo-router";
-
 
 export default function RegisterScreen(): JSX.Element {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  // const [user, setUser] = useState<User | null>(null);
 
   const SignUp = (): void => {
-    createUserWithEmailAndPassword(Auth, email, password)
+    createUserWithEmailAndPassword(auth , email, password)
     .then((userCredential) => {
       // Signed up 
       // setUser(userCredential.user);

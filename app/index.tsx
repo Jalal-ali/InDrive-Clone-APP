@@ -7,11 +7,11 @@ import Header from "@/app/components/Header";
 import Paragraph from "@/app/components/Paragraph";
 import { Link } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Button } from '@rneui/themed';
-import { useNavigation } from "@react-navigation/native";
-export default function index() {
-  
-  const navigation = useNavigation();
+
+
+
+export default function Index(): JSX.Element {
+
   return (
     <Background>
       <Logo />

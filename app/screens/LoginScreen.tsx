@@ -8,23 +8,23 @@ import Header from "../components/Header";
 import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import { Link } from "expo-router";
-import { Auth } from "../../firebaseConfig";
-import { signInWithEmailAndPassword} from "firebase/auth";
+import { auth } from "../../firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { router } from "expo-router";
 
-export default function LoginScreen(): JSX.Element {
+export default function LoginScreen(){
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean | null>(null);
-  // const [user, setUser] = useState<string>("");
-
 
   const login = async (): Promise<void> => {
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(Auth, email, password);
-      
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
       const user = userCredential.user;
       Alert.alert("Login successful", "Welcome back!");
+      router.push("/screens/HomeScreen", { relativeToDirectory: true })
     } catch (error: any) {
       const errorMessage = error.message;
       Alert.alert("Login failed", errorMessage);
@@ -37,7 +37,7 @@ export default function LoginScreen(): JSX.Element {
     <Background>
       <Logo />
       <Header>Login To Your Account</Header>
-      <Text>{email}</Text>
+      {/* <Text>{email}</Text> */}
       <TextInput
         label="Email"
         returnKeyType="next"
@@ -59,17 +59,15 @@ export default function LoginScreen(): JSX.Element {
           <Text style={styles.forgot}>Forgot your password?</Text>
         </TouchableOpacity>
       </View>
-      {/* login button */}
       <TouchableOpacity onPress={login} style={styles.button}>
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
-
       <View style={styles.row}>
         <Text>You do not have an account yet?</Text>
       </View>
       <View style={styles.row}>
         <TouchableOpacity>
-        <Link style={styles.link} href="/screens/RegisterScreen">Create!</Link>
+          <Link style={styles.link} href="/screens/RegisterScreen">Create!</Link>
         </TouchableOpacity>
       </View>
     </Background>
@@ -79,7 +77,7 @@ export default function LoginScreen(): JSX.Element {
 const styles = StyleSheet.create({
   forgotPassword: {
     width: "100%",
-    color : "#4f4f4f",
+    color: "#4f4f4f",
     alignItems: "flex-start",
     marginBottom: 10,
   },
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   forgot: {
-    fontWeight : "500",
+    fontWeight: "500",
     fontSize: 13,
     color: "#4f4f4f",
   },

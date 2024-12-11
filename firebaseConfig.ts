@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {getAuth} from 'firebase/auth'
+import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCxMCd5Miwj5iY_NL-46pbOeVYBuogG-Z8",
@@ -11,5 +12,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const Auth = getAuth(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Persist auth state manually
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    await AsyncStorage.setItem('authUser', JSON.stringify(user));
+  } else {
+    await AsyncStorage.removeItem('authUser');
+  }
+});
+
+export {auth , app}

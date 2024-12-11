@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
     marginBottom: 20,
-    borderRadius : 100,
+    borderRadius : 30,
   },
   title : {
     fontWeight : 'bold',

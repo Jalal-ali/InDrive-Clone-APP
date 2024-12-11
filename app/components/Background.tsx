@@ -1,13 +1,19 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   ImageBackground,
   StyleSheet,
   KeyboardAvoidingView,
+  ViewStyle,
+  ImageStyle,
 } from "react-native";
 
 import { theme } from "../core/theme";
 
-export default function Background({ children }) {
+type BackgroundProps = {
+  children: ReactNode;
+};
+
+export default function Background({ children }: BackgroundProps) {
   return (
     <ImageBackground
       source={require("../../assets/items/dot.png")}
@@ -26,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: theme.colors.myColor,
-  },
+  } as ViewStyle,
   container: {
     flex: 1,
     padding: 20,
@@ -35,5 +41,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
-  },
+  } as ViewStyle,
 });
